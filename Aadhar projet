@@ -1,0 +1,46 @@
+import random
+import time
+import datetime 
+
+user = "ri"
+pin = 6595
+UID = []
+user_id = input("user name:")
+password = int(input("enter password:"))
+time.sleep(2)
+
+if user == user_id and pin == password:
+    print("Login successfully!")
+    print("------WELCOME TO AADHAR CENTER------")
+
+    def menu():
+        name = input("enter your name :")
+        DOB = input("enter your DOB (DD/MM/YYYY):")
+        address = input("enter your address :")
+        gender = input("enter your gender(MALE/FEMALE) :")
+
+        #aadhar number genrated
+        aadhar_no = random.randint(10**11, 10**12 - 1)
+        formatted = f"{str(aadhar_no)[:4]} {str(aadhar_no)[4:8]} {str(aadhar_no)[8:]}"
+        UID.append(formatted)
+        
+
+        #file handling
+        with open ("aadhar_card.txt" , "a") as file:
+            file.write(f"Name : {name}\n")
+            file.write(f"DOB : {DOB}\n")
+            file.write(f"Address : {address}\n")
+            file.write(f"Gender : {gender}\n")
+            file.write(f"Aadhar no : {formatted}\n")
+            file.write(f"Aadhaar No: {aadhar_no}\n")
+            file.write("-" * 30 + "\n")
+    
+        print("\n--- Aadhaar Registration Successful ---")
+        print(f"Aadhaar Number: {aadhar_no}")
+        print("Details saved in 'aadhar_data.txt' file.")
+                            
+    menu()
+
+else:
+    print("Invalid user or password")
+
